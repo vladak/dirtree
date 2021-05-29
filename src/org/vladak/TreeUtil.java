@@ -62,4 +62,23 @@ public class TreeUtil {
             }
         }
     }
+
+    public static String getPathToRoot(TreeNode node) {
+        // TODO: what if the node is root
+        String path = node.getPathElem();
+        node = node.getParent();
+        while (node != null) {
+            // TODO: Windows
+            if (!node.getPathElem().equals("/")) {
+                path = node.getPathElem() + File.separator + path;
+            } else {
+                path = node.getPathElem() + path;
+            }
+            node = node.getParent();
+        }
+        // TODO: Windows
+        // path = "/" + path;
+
+        return path;
+    }
 }

@@ -24,5 +24,8 @@ public class Main {
             TreeUtil.addPath(path, root);
         }
         System.out.println(TreeUtil.getLeaves(root));
+        for (TreeNode n : TreeUtil.getLeaves(root)) {
+            System.out.println(TreeUtil.getPathToRoot(n));
+        }
     }
 }

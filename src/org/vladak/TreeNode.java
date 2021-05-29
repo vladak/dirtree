@@ -11,8 +11,13 @@ import java.util.Set;
 public class TreeNode {
     private final String pathElem;
     private final Set<TreeNode> children = new HashSet<>();
+    private TreeNode parent = null;
 
     TreeNode(String pathElem) throws TreeNodeException {
+        if (pathElem.isEmpty()) {
+            throw new TreeNodeException("empty path element");
+        }
+
         if (!pathElem.equals("/") && pathElem.contains(File.separator)) {
             throw new TreeNodeException(pathElem);
         }
@@ -39,6 +44,15 @@ public class TreeNode {
             throw new TreeNodeException(child.getPathElem());
         }
         children.add(child);
+        child.setParent(this);
+    }
+
+    public void setParent(TreeNode parent) {
+        this.parent = parent;
+    }
+
+    public TreeNode getParent() {
+        return parent;
     }
 
     /**
