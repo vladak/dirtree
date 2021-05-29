@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class TreeNode {
     private final String pathElem;
-    private Set<TreeNode> children = new HashSet<>();
+    private final Set<TreeNode> children = new HashSet<>();
 
     TreeNode(String pathElem) throws TreeNodeException {
         if (!pathElem.equals("/") && pathElem.contains(File.separator)) {
