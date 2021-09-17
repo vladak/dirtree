@@ -2,6 +2,7 @@ package org.vladak;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,10 +28,10 @@ public class TreeNodeTest {
     }
 
     @Test
-    void testRoot() throws IOException, TreeNodeException {
-        Path path = Files.createTempFile("foo", "bar");
-        System.out.println("root: " + path.getRoot().toString());
-        new TreeNode(path.getRoot().toString());
+    void testRoot() throws TreeNodeException {
+        String root = File.listRoots()[0].toString();
+        System.out.println("root: " + root);
+        new TreeNode(root);
     }
 
     @Test
