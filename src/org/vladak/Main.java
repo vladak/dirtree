@@ -1,5 +1,10 @@
 package org.vladak;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -39,6 +44,13 @@ public class Main {
         System.out.println("Paths from leaves to the root:");
         for (TreeNode n : TreeUtil.getLeaves(root)) {
             System.out.println(TreeUtil.getPathToRoot(n));
+        }
+
+        Path path = Files.createTempFile("foo", "bar");
+        try {
+            new TreeNode(path.toString());
+        } catch (TreeNodeException e) {
+            System.err.println(e);
         }
     }
 }

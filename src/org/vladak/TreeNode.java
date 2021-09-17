@@ -1,6 +1,8 @@
 package org.vladak;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,14 +15,22 @@ public class TreeNode {
     private final Set<TreeNode> children = new HashSet<>();
     private TreeNode parent = null;
 
+    /**
+     * Create tree node from a path element.
+     * @param pathElem path element
+     * @throws TreeNodeException if the pathElem is not a path component or is empty
+     */
     TreeNode(String pathElem) throws TreeNodeException {
         if (pathElem.isEmpty()) {
             throw new TreeNodeException("empty path element");
         }
 
-        if (!pathElem.equals("/") && pathElem.contains(File.separator)) {
+        // TODO: check Windows
+        Path path = Paths.get(pathElem);
+        if (pathElem.contains(File.separator) && !path.toString().equals(path.getRoot().toString())) {
             throw new TreeNodeException(pathElem);
         }
+
         this.pathElem = pathElem;
     }
 
