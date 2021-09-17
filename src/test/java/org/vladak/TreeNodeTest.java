@@ -20,6 +20,13 @@ public class TreeNodeTest {
     }
 
     @Test
+    void testEmptyTreeNodeParameter() {
+        assertThrows(TreeNodeException.class, () -> {
+            new TreeNode("");
+        });
+    }
+
+    @Test
     void testGetElem() throws TreeNodeException {
         String elem = "foo";
         TreeNode node = new TreeNode(elem);
