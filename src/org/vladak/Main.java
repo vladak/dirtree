@@ -1,12 +1,11 @@
 package org.vladak;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Main {
 
+    // TODO: convert this into JUnit tests
     public static void main(String[] args) throws Exception {
         TreeNode node = new TreeNode("foo");
         System.out.println(node.getPathElem());
