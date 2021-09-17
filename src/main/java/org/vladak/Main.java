@@ -1,7 +1,5 @@
 package org.vladak;
 
-import java.io.File;
-
 public class Main {
 
     // TODO: convert this into JUnit tests
