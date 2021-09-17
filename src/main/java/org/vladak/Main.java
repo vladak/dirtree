@@ -44,12 +44,5 @@ public class Main {
         for (TreeNode n : TreeUtil.getLeaves(root)) {
             System.out.println(TreeUtil.getPathToRoot(n));
         }
-
-        Path path = Files.createTempFile("foo", "bar");
-        try {
-            new TreeNode(path.toString());
-        } catch (TreeNodeException e) {
-            System.err.println(e);
-        }
     }
 }
