@@ -31,20 +31,36 @@ public class TreeUtil {
     }
 
     /**
+     * see {@link #addPath(String, TreeNode, boolean)}
+     * @param path absolute file system path
+     * @param root root node
+     * @throws TreeNodeException on bad input data
+     */
+    public static void addPath(String path, TreeNode root) throws TreeNodeException {
+        addPath(path, root, false);
+    }
+
+    /**
      * break down path into path elements and create node in given tree
      * @param path absolute file system path
      * @param root root node
+     * @param stripBasename strip basename from the path prior to breaking it into the path elements
+     * @throws TreeNodeException on bad input data
      */
-    public static void addPath(String path, TreeNode root) throws TreeNodeException {
+    public static void addPath(String path, TreeNode root, boolean stripBasename) throws TreeNodeException {
         // TODO: Windows
         if (!path.startsWith(File.separator)) {
-            // TODO: need other message
+            // TODO: need other exception
             throw new TreeNodeException("not absolute path");
         }
 
         if (!root.getPathElem().equals("/")) {
-            // TODO: need other message
+            // TODO: need other exception
             throw new TreeNodeException("not a root node");
+        }
+
+        if (stripBasename) {
+            path = path.substring(0, path.lastIndexOf(File.separator));
         }
 
         TreeNode node = root;
