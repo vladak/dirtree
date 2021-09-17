@@ -15,6 +15,7 @@ public class TreeNode {
     private final Set<TreeNode> children = new HashSet<>();
     private TreeNode parent = null;
 
+    // TODO: move to some utility class ? (not TreeUtil)
     static boolean isRoot(String pathElem) {
         Path path = Paths.get(pathElem);
         return path.toString().equals(path.getRoot().toString());
