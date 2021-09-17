@@ -15,6 +15,10 @@ I.e. if the set consists of
 then it would make sense to call just `Java.io.File.mkdirs("/foo/bar)` and all
 the needed directories for this set of files are created at once.
 
-The idea is to construct a tree structure that would contain the file system
+The first idea would be to create a `Set` and add directory names for all the
+files (`file.getParent()`) there. For the case above that would reduce the set
+of directories to create to `["/foo", "/foo/bar"]`.
+
+Another idea is to construct a tree structure that would contain the file system
 paths and implement associated methods to extract the set of paths from the tree
-that have to be passed to `mkdirs()` calls.
+that have to be passed to `mkdirs()` calls. This is what is done here.
