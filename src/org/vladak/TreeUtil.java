@@ -80,20 +80,23 @@ public class TreeUtil {
 
     public static String getPathToRoot(TreeNode node) {
         // TODO: what if the node is root
-        String path = node.getPathElem();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(node.getPathElem());
         node = node.getParent();
         while (node != null) {
             // TODO: Windows
             if (!node.getPathElem().equals("/")) {
-                path = node.getPathElem() + File.separator + path;
+                sb.insert(0, File.separator);
+                sb.insert(0, node.getPathElem());
             } else {
-                path = node.getPathElem() + path;
+                sb.insert(0, node.getPathElem());
             }
             node = node.getParent();
         }
         // TODO: Windows
         // path = "/" + path;
 
-        return path;
+        return sb.toString();
     }
 }
