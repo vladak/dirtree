@@ -34,9 +34,9 @@ public class TreeUtil {
      * see {@link #addPath(String, TreeNode, boolean)}
      * @param path absolute file system path
      * @param root root node
-     * @throws TreeNodeException on bad input data
+     * @throws TreeException on bad input data
      */
-    public static void addPath(String path, TreeNode root) throws TreeNodeException {
+    public static void addPath(String path, TreeNode root) throws TreeException {
         addPath(path, root, false);
     }
 
@@ -45,18 +45,16 @@ public class TreeUtil {
      * @param path absolute file system path
      * @param root root node
      * @param stripBasename strip basename from the path prior to breaking it into the path elements
-     * @throws TreeNodeException on bad input data
+     * @throws TreeException on bad input data
      */
-    public static void addPath(String path, TreeNode root, boolean stripBasename) throws TreeNodeException {
+    public static void addPath(String path, TreeNode root, boolean stripBasename) throws TreeException {
         // TODO: Windows
         if (!path.startsWith(File.separator)) {
-            // TODO: need other exception
-            throw new TreeNodeException("not absolute path");
+            throw new TreeException("not absolute path");
         }
 
         if (!root.getPathElem().equals("/")) {
-            // TODO: need other exception
-            throw new TreeNodeException("not a root node");
+            throw new TreeException("not a root node");
         }
 
         if (stripBasename) {
