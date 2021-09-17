@@ -30,6 +30,7 @@ public class TreeNodeTest {
     @Test
     void testRoot() throws IOException, TreeNodeException {
         Path path = Files.createTempFile("foo", "bar");
+        System.out.println("root: " + path.getRoot().toString());
         new TreeNode(path.getRoot().toString());
     }
 
