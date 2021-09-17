@@ -14,11 +14,14 @@ public class Main {
 
         System.out.println(TreeUtil.getLeaves(node));
 
-        String[] paths = {"/beverages/coffee/espresso.java",
+        String[] paths = {
+                "/beverages/coffee/espresso.java",
                 "/beverages/alcohol/beer.c",
                 "/food/healthy/vegetarian/salad.txt",
                 "/food/healthy/fruit/blueberries.hs",
-                "/food/unhealthy/cake.md"};
+                "/food/healthy/fruit/apple.objc",
+                "/food/unhealthy/cake.md"
+        };
         TreeNode root = new TreeNode("/");
         for (String path : paths) {
             TreeUtil.addPath(path, root);
