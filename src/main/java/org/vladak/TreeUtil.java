@@ -78,6 +78,10 @@ public class TreeUtil {
         }
     }
 
+    /**
+     * @param node tree node
+     * @return path from the node to the root node
+     */
     public static String getPathToRoot(TreeNode node) {
         // TODO: what if the node is root
 
