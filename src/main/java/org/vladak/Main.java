@@ -8,8 +8,6 @@ public class Main {
     // TODO: convert this into JUnit tests
     public static void main(String[] args) throws Exception {
         TreeNode node = new TreeNode("foo");
-        System.out.println(node.getPathElem());
-
         TreeNode bar = new TreeNode("bar");
         node.addChild(bar);
         bar.addChild(new TreeNode("xxx"));
