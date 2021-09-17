@@ -25,7 +25,6 @@ public class TreeNode {
             throw new TreeNodeException("empty path element");
         }
 
-        // TODO: check Windows
         Path path = Paths.get(pathElem);
         if (pathElem.contains(File.separator) && !path.toString().equals(path.getRoot().toString())) {
             throw new TreeNodeException(pathElem);
