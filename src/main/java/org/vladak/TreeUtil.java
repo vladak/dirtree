@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import static org.vladak.TreeNode.isRoot;
+
 public class TreeUtil {
     private TreeUtil() {
         // private to enforce static
@@ -53,8 +55,8 @@ public class TreeUtil {
             throw new TreeException("not absolute path");
         }
 
-        // TODO: Windows
-        if (!root.getPathElem().equals("/")) {
+        // TODO: should check that the root of the path is the same as the pathElem of the root node
+        if (!isRoot(root.getPathElem())) {
             throw new TreeException("not a root node");
         }
 

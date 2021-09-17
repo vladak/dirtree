@@ -15,6 +15,11 @@ public class TreeNode {
     private final Set<TreeNode> children = new HashSet<>();
     private TreeNode parent = null;
 
+    static boolean isRoot(String pathElem) {
+        Path path = Paths.get(pathElem);
+        return path.toString().equals(path.getRoot().toString());
+    }
+
     /**
      * Create tree node from a path element.
      * @param pathElem path element
@@ -25,8 +30,7 @@ public class TreeNode {
             throw new TreeNodeException("empty path element");
         }
 
-        Path path = Paths.get(pathElem);
-        if (pathElem.contains(File.separator) && !path.toString().equals(path.getRoot().toString())) {
+        if (pathElem.contains(File.separator) && !isRoot(pathElem)) {
             throw new TreeNodeException(pathElem);
         }
 
