@@ -48,7 +48,7 @@ public class TreeUtil {
      * @throws TreeException on bad input data
      */
     public static void addPath(String path, TreeNode root, boolean stripBasename) throws TreeException {
-        // TODO: Windows
+        // TODO: Windows - use Path + getRoot()
         if (!path.startsWith(File.separator)) {
             throw new TreeException("not absolute path");
         }
