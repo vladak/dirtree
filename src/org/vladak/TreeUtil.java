@@ -48,11 +48,12 @@ public class TreeUtil {
      * @throws TreeException on bad input data
      */
     public static void addPath(String path, TreeNode root, boolean stripBasename) throws TreeException {
-        // TODO: Windows - use Path + getRoot()
-        if (!path.startsWith(File.separator)) {
+        File file = new File(path);
+        if (!file.isAbsolute()) {
             throw new TreeException("not absolute path");
         }
 
+        // TODO: Windows
         if (!root.getPathElem().equals("/")) {
             throw new TreeException("not a root node");
         }
