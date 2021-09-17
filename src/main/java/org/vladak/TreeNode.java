@@ -3,8 +3,8 @@ package org.vladak;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class TreeNode {
     private final String pathElem;
-    private final Map<String,TreeNode> children = new HashMap<>();
+    private final Set<TreeNode> children = new HashSet<>();
     private TreeNode parent = null;
 
     /**
@@ -41,7 +41,7 @@ public class TreeNode {
      * @return set of child nodes
      */
     public Set<TreeNode> getChildren() {
-        return Set.copyOf(children.values());
+        return Collections.unmodifiableSet(children);
     }
 
     /**
@@ -52,7 +52,7 @@ public class TreeNode {
         if (child.getPathElem().contains(File.separator)) {
             throw new TreeNodeException(child.getPathElem());
         }
-        children.put(child.getPathElem(), child);
+        children.add(child);
         child.setParent(this);
     }
 
@@ -69,7 +69,14 @@ public class TreeNode {
      * @return child node that matches the path element or null
      */
     public TreeNode getChild(String pathElem) {
-        return children.getOrDefault(children.get(pathElem), null);
+        // TODO: avoid the cycle. use a HashMap ?
+        for (TreeNode child : children) {
+            if (child.getPathElem().equals(pathElem)) {
+                return child;
+            }
+        }
+
+        return null;
     }
 
     public String toString() {
