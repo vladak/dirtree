@@ -4,7 +4,9 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Set;
  */
 public class TreeNode {
     private final String pathElem;
-    private final Set<TreeNode> children = new HashSet<>();
+    private final Map<String,TreeNode> children = new HashMap<>();
     private TreeNode parent = null;
 
     /**
@@ -41,7 +43,7 @@ public class TreeNode {
      * @return set of child nodes
      */
     public Set<TreeNode> getChildren() {
-        return Collections.unmodifiableSet(children);
+        return Set.copyOf(children.values());
     }
 
     /**
@@ -52,7 +54,7 @@ public class TreeNode {
         if (child.getPathElem().contains(File.separator)) {
             throw new TreeNodeException(child.getPathElem());
         }
-        children.add(child);
+        children.put(child.getPathElem(), child);
         child.setParent(this);
     }
 
@@ -69,13 +71,7 @@ public class TreeNode {
      * @return child node that matches the path element or null
      */
     public TreeNode getChild(String pathElem) {
-        for (TreeNode child : children) {
-            if (child.getPathElem().equals(pathElem)) {
-                return child;
-            }
-        }
-
-        return null;
+        return children.getOrDefault(children.get(pathElem), null);
     }
 
     public String toString() {
