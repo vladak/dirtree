@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,6 +25,12 @@ public class TreeNodeTest {
         assertThrows(TreeNodeException.class, () -> {
             new TreeNode("");
         });
+    }
+
+    @Test
+    void testRoot() throws IOException, TreeNodeException {
+        Path path = Files.createTempFile("foo", "bar");
+        new TreeNode(path.getRoot().toString());
     }
 
     @Test
