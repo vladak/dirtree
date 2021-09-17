@@ -39,4 +39,12 @@ public class TreeNodeTest {
         TreeNode node = new TreeNode(elem);
         assertEquals(elem, node.getPathElem());
     }
+
+    @Test
+    void testAddChild() throws IOException, TreeNodeException {
+        Path path = Files.createTempFile("foo", "bar");
+        TreeNode root = new TreeNode(path.getRoot().toString());
+        TreeNode node = new TreeNode("foo");
+        assertThrows(TreeNodeException.class, () -> node.addChild(root));
+    }
 }
