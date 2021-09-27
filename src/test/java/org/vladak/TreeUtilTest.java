@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TreeUtilTest {
     @Test
     @EnabledOnOs(OS.WINDOWS)
-    void testDifferentRoots() throws TreeException {
+    void testDifferentRoots() {
         assertTrue(File.listRoots().length > 1);
 
         File root1 = File.listRoots()[0];
