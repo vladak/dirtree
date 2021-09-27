@@ -1,24 +1,29 @@
 package org.vladak;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TreeUtilTest {
-    // TODO: replace the if with Windows check
     @Test
+    @EnabledOnOs(OS.WINDOWS)
     void testDifferentRoots() throws TreeException {
-        if (File.listRoots().length > 1) {
-            File root1 = File.listRoots()[0];
-            File root2 = File.listRoots()[1];
-            assertNotEquals(root1, root2);
+        assertTrue(File.listRoots().length > 1);
 
-            File file = new File(root2, "foo");
-            TreeUtil.addPath(file.toString(), new TreeNode(root1.toString()), false);
-        }
+        File root1 = File.listRoots()[0];
+        File root2 = File.listRoots()[1];
+        assertNotEquals(root1, root2);
+
+        File file = new File(root2, "foo");
+        assertThrows(TreeException.class,
+                () -> TreeUtil.addPath(file.toString(), new TreeNode(root1.toString()), false));
     }
 
     @Test
