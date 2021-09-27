@@ -3,6 +3,7 @@ package org.vladak;
 import java.io.File;
 import java.net.URI;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -55,9 +56,14 @@ public class TreeUtil {
             throw new TreeException("not absolute path");
         }
 
-        // TODO: should check that the root of the path is the same as the pathElem of the root node
         if (!isRoot(root.getPathElem())) {
             throw new TreeException("not a root node");
+        }
+
+        Path filePath = Paths.get(path);
+        if (!root.getPathElem().equals(filePath.getRoot())) {
+            throw new TreeException(String.format("root of '%s' is not equal to root node: %s",
+                    root.getPathElem(), filePath));
         }
 
         if (stripBasename) {
