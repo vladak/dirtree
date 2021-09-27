@@ -61,9 +61,9 @@ public class TreeUtil {
         }
 
         Path filePath = Paths.get(path);
-        if (!root.getPathElem().equals(filePath.getRoot())) {
+        if (!root.getPathElem().equals(filePath.getRoot().toString())) {
             throw new TreeException(String.format("root of '%s' is not equal to root node: %s",
-                    root.getPathElem(), filePath));
+                    filePath, root.getPathElem()));
         }
 
         if (stripBasename) {
