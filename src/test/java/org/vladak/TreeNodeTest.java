@@ -42,7 +42,7 @@ public class TreeNodeTest {
     }
 
     @Test
-    void testAddChild() throws IOException, TreeNodeException {
+    void testAddChildWithPathSeparator() throws IOException, TreeNodeException {
         Path path = Files.createTempFile("foo", "bar");
         TreeNode root = new TreeNode(path.getRoot().toString());
         TreeNode node = new TreeNode("foo");
