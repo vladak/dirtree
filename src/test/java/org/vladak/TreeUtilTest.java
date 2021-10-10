@@ -5,6 +5,7 @@ import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import java.io.File;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -24,6 +25,23 @@ public class TreeUtilTest {
         File file = new File(root2, "foo");
         assertThrows(TreeException.class,
                 () -> TreeUtil.addPath(file.toString(), new TreeNode(root1.toString()), false));
+    }
+
+    @Test
+    void testGetLeavesRootSolo() throws TreeNodeException {
+        TreeNode root = new TreeNode("root");
+        assertEquals(Set.of(new TreeNode("root")), TreeUtil.getLeaves(root));
+    }
+
+    @Test
+    void testGetLeavesBasic() throws TreeNodeException {
+        TreeNode root = new TreeNode("animals");
+        TreeNode mammals = new TreeNode("mammals");
+        root.addChild(mammals);
+        mammals.addChild(new TreeNode("dolphin"));
+        root.addChild(new TreeNode("vertebrates"));
+        assertEquals(Set.of(new TreeNode("dolphin"), new TreeNode("vertebrates")),
+                TreeUtil.getLeaves(root));
     }
 
     @Test

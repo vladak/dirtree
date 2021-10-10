@@ -87,4 +87,16 @@ public class TreeNode {
     public String toString() {
         return pathElem;
     }
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (!(otherObject instanceof TreeNode)) {
+            return false;
+        }
+
+        TreeNode other = (TreeNode) otherObject;
+
+        // TODO: might want to compare parent (if any) and children (if any)
+        return other.getPathElem().equals(this.getPathElem());
+    }
 }
