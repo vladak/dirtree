@@ -16,6 +16,7 @@ public class TreeUtil {
     }
 
     /**
+     * TODO: add another method with visitor pattern and implement this one as a wrapper ?
      * Get all leaves of a node by performing depth first traversal.
      * @param node initiating node
      * @return set of nodes
