@@ -71,6 +71,7 @@ public class TreeUtil {
             path = path.substring(0, path.lastIndexOf(File.separator));
         }
 
+        // Traverse the tree from the root and create nodes based on path elements where necessary.
         TreeNode node = root;
         Path p = new File(path).toPath();
         Iterator<Path> elements = p.iterator();
